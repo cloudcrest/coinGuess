@@ -32,8 +32,14 @@ while guess == result:
     guess = raw_input("Is it heads or tails?")
     result = flip_coin()
 
-else:
-    print "Nope. It's %s. Nice try. Your score is %d. The all-time high score is %d." % (result, score, highScore)
+if score > highScore:
+    f.seek(0)
+    f.truncate()
+    score = str(score)
+    f.write(score)
+    highScore = score
+
+print "Nope. It's %s. Nice try. Your score is %s. The all-time high score is %d." % (result, score, highScore)
 
 
 
